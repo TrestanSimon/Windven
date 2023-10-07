@@ -1,0 +1,15 @@
+  FORMAT OF THE SUBSETTED FILE
+    
+    ITEMS                      FORMAT   
+     
+ 1 Year                          I4        
+ 2 Day                           I4        
+ 3 Hour                          I3        
+ 4 WIND Bt, nT                   F6.1      
+ 5 ACE Bt,nT                     F6.1      
+ 6 WIND Bx_gse, nT               F6.1      
+ 7 ACE Bx_gse, nT                F6.1      
+ 8 WIND By_gse, nT               F6.1      
+ 9 ACE By_gse, nT                F6.1      
+10 WIND Bz_gse, nT               F6.1      
+11 ACE Bz_gse, nT                F6.1      
