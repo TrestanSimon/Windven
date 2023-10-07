@@ -1,7 +1,8 @@
 from datetime import datetime
 import numpy as np
+import pandas as pd
 
-MONTH_DAYS = [
+_MONTH_DAYS = [
     31,  # Jan
     28,  # Feb
     31,  # Mar
@@ -18,28 +19,29 @@ MONTH_DAYS = [
 
 
 def read_file(file_name):
-    data = {
-        "time": [],
-        "wind": [],
-        "ace": [],
-    }
+    time = []
+    data = {"bt": [], "bx": [], "by": [], "bz": []}
     with open(file_name, 'r') as f:
         for line in f:
             columns = line.strip().split()
-            year, month, hour = map(int, columns[0:3])
-            data["time"].append(to_datetime(year, month, hour))
-            
-            value = map(float, columns[3:])
+            year, day, hour = map(int, columns[0:3])
+            time.append(_to_datetime(year, day, hour))
 
-            if value == 999.9:
-                value = np.NaN
-        return data
+            bt, bx, by, bz = map(_process_data, columns[3:])
+            data["bt"].append(bt)
+            data["bx"].append(bx)
+            data["by"].append(by)
+            data["bz"].append(bz)
+
+        return pd.DataFrame(data, index=time)
 
 
-def to_datetime(year, day, hour):
-    month_days = MONTH_DAYS
+def _to_datetime(year, day, hour):
+    month_days = _MONTH_DAYS
     if year % 4 == 0:
-        month_days[1] += 1
+        month_days[1] = 29
+    else:
+        month_days[1] = 28
 
     month = 0
     while day > 0:
@@ -51,5 +53,8 @@ def to_datetime(year, day, hour):
     return datetime(year, month, day, hour)
 
 
-for time, data in read_file("data\\imp_wind_ace_geo_mag_5TPpAZVoI_.lst"):
-    print(f"{time}, {data}")
+def _process_data(value):
+    value = float(value)
+    if value == 999.9:
+        value = np.NaN
+    return value
