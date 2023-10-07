@@ -1,0 +1,11 @@
+  FORMAT OF THE SUBSETTED FILE
+    
+    ITEMS                      FORMAT   
+     
+ 1 Year                          I4        
+ 2 Day                           I4        
+ 3 Hour                          I3        
+ 4 DSCOV Bt, nT                  F6.1      
+ 5 DSCOV Bx_gse, nT              F6.1      
+ 6 DSCOV By_gse, nT              F6.1      
+ 7 DSCOV Bz_gse, nT              F6.1      
