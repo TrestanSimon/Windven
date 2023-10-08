@@ -58,3 +58,10 @@ def _process_data(value):
     if value == 999.9:
         value = np.NaN
     return value
+
+
+def resample_no_nan(values):
+    if any(pd.isna(values)):
+        return np.nan
+    else:
+        return np.mean(values)
