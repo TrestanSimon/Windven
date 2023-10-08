@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['text.usetex'] = True
 plt.style.use(style="seaborn-v0_8-talk")
 
-data = read_file("data\\wind.lst")
+data = read_file("data/wind.lst")
 
 # Resample and process data
 data = data.resample("M").mean().dropna()

@@ -6,7 +6,7 @@ import seaborn as sns
 plt.rcParams['text.usetex'] = True
 plt.style.use(style="seaborn-v0_8-talk")
 
-data = read_file("data\\wind.lst")
+data = read_file("data/wind.lst")
 print(data)
 
 data_day = data.resample("H").mean()
