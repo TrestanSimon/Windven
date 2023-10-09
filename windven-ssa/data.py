@@ -1,3 +1,5 @@
+import sys
+import os
 from datetime import datetime
 import numpy as np
 import pandas as pd
@@ -18,10 +20,15 @@ _MONTH_DAYS = [
 ]
 
 
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
 def read_file(file_name):
     time = []
     data = {"bt": [], "bx": [], "by": [], "bz": []}
-    with open(file_name, 'r') as f:
+    with open(resource_path(file_name), 'r') as f:
         for line in f:
             columns = line.strip().split()
             year, day, hour = map(int, columns[0:3])
